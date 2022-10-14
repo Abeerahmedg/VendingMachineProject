@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VendingMachine2
+﻿namespace VendingMachine2
 {
     public class ApplicationManager
     {
@@ -39,10 +37,11 @@ namespace VendingMachine2
                     break;
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("Press 1 then Enter to insert the wanted Product Id:");
+                    Console.WriteLine("Press 1 then Enter to buy the wanted Product Id:");
 
                     var ProductId = Convert.ToInt32(Console.ReadLine());
                     vendingMachine.Purchase(ProductId);
+                   
                     //if (vendingMachine.AvilableMoney != 0)
                     //{
 

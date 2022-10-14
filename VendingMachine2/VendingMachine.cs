@@ -8,9 +8,9 @@
             AddProducts();
             AvilableMoney = 0;
         }
-        
 
-        public readonly int[] AllowedMoney = { 1, 5, 10, 20, 50, 100, 500 };
+
+        public readonly int[] AllowedMoney = { 1, 5, 10, 20, 50, 100, 500, 1000 };
         public List<Product> Products;
         public List<Product> Basket = new();
         public int AvilableMoney { get; set; }
@@ -20,7 +20,7 @@
         {
             Drinks drinks = new("Pepsi", 20, "Cold soda.");
             Products.Add(drinks);
-            drinks = new("Mountain Dew", 20, "citrus-flavored soda.");
+            drinks = new("Orange Juice", 20, "The pressing of the natural liquid contained in Orange");
             Products.Add(drinks);
             drinks = new("Water", 15, "A perfect way to hydrate your body");
             Products.Add(drinks);
@@ -57,7 +57,7 @@
 
         public void Purchase(int ProductId)
         {
-            
+            ShowAll();
             if (AvilableMoney == 0)
             {
                 Console.WriteLine("Please insert money first!");
@@ -65,8 +65,10 @@
             }
             else
             {
+                Console.WriteLine($"you have in your wallet {AvilableMoney} to spend");
                 Console.WriteLine("Please Enter the Id for the product you want to buy: ");
                 ProductId = Convert.ToInt32(Console.ReadLine());
+
                 if (ProductId > Products.Count)
                 {
                     Console.WriteLine("Not a valid Id");
@@ -80,11 +82,37 @@
                             Basket.Add(item);
                             AvilableMoney -= item.Price;
                             Console.WriteLine($"The {item.Name} added to your basket!");
-
-                            Console.WriteLine();
-                            Console.WriteLine($"You still have {AvilableMoney} to spend ");
                         }
-                        else
+
+                        Console.WriteLine();
+                        Console.WriteLine($"You still have {AvilableMoney} to spend ");
+                        Console.WriteLine("Do you wish to add more ! (y : Yes / n: No)");
+                        string input = Console.ReadLine();
+
+                        switch (input)
+                        {
+                            case "y":
+                                ShowAll();
+                                Console.WriteLine("Please Enter the Id for the product you want to buy: ");
+                                ProductId = Convert.ToInt32(Console.ReadLine());
+
+                                if (ProductId > Products.Count)
+                                {
+                                    Console.WriteLine("Not a valid Id");
+                                }
+                                break;
+                            case "n":
+                                break;
+                            default:
+                                Console.WriteLine("Not a valid option!");
+                                break;
+                        }
+
+                        if (ProductId > Products.Count)
+                        {
+                            Console.WriteLine("Not a valid Id");
+                        }
+                        else if (AvilableMoney < item.Price)
                         {
                             Console.WriteLine("Not enough money for that , insert more...");
                         }
@@ -95,14 +123,14 @@
 
         public void InsertMoney(bool valid)
         {
-           
+
             int avilable = 0;
-            
+
             Console.WriteLine("Insert Money to purchase..");
-             avilable = int.Parse(Console.ReadLine());
+            avilable = int.Parse(Console.ReadLine());
 
 
-            //AllowedMoney.Length;
+
             for (int i = 0; i < AllowedMoney.Length; i++)
             {
 
@@ -112,23 +140,44 @@
                     valid = true;
                     AvilableMoney += avilable;
                     Console.WriteLine($"You have in your wallet {AvilableMoney} to spend.");
-                    break;
-                    //
 
+
+
+
+
+                    Console.WriteLine("Do you wish to insert more ! (y : Yes / n: No)");
+                    string input = Console.ReadLine();
+                    switch (input)
+                    {
+                        case "y":
+
+                            Console.WriteLine("Insert Money to purchase..");
+                            avilable = int.Parse(Console.ReadLine());
+                            AvilableMoney += avilable;
+                            Console.WriteLine($"You have in your wallet {AvilableMoney} to spend.");
+                            break;
+                        case "n":
+                            break;
+                        default:
+                            Console.WriteLine("Not valid input!");
+                            break;
+                    }
                 }
-
             }
             if (!valid)
             {
-                // valid = false;
+
                 Console.WriteLine("Not allowed money , Allowed are : 1,5,10,20,50,100,500,100");
 
             }
 
+
+
+
         }
         public bool CheckInput(int args)
         {
-            foreach( int index in AllowedMoney)
+            foreach (int index in AllowedMoney)
             {
                 if (args == index) { return true; }
             }
@@ -137,7 +186,7 @@
 
         public void ShowBasket()
         {
-         
+
 
             if (Basket.Count == 0)
             {
@@ -152,12 +201,6 @@
                     Console.WriteLine("-" + item.Name);
                     item.Use(item);
                     Console.WriteLine();
-                    //foreach (var _item in Basket)
-                    //{
-                    //    _item.Use(item);
-
-                    //    Console.WriteLine();
-                    //}
 
                 }
 
@@ -170,22 +213,83 @@
 
         public void ReturnChange()
         {
-            Console.WriteLine($"Thank you for purchasing here are your change : {AvilableMoney}");
-            Console.WriteLine();
-            Console.WriteLine("Press any key to Exit");
+
+
+            Console.WriteLine($"Thank you for purchasing here are your change : {AvilableMoney} SEK");
+            Console.WriteLine("You will get :");
+            int change = AvilableMoney;
+            int i, a, b, c, d, e, f,g, h;
+            while (change >= AllowedMoney[7])
+            {
+                a = change / AllowedMoney[7];
+                change = change % AllowedMoney[7];
+                for (i = 1; i <= a; i++) Console.WriteLine("1000 bil" + " ");
+
+            }
+            while (change >= AllowedMoney[6])
+            {
+                b = change / AllowedMoney[6];
+                change = change % AllowedMoney[7];
+                for (i = 1; i <= b; i++) Console.WriteLine("500 bil" + " ");
+
+            }
+            while (change >= AllowedMoney[5])
+            {
+                c = change / AllowedMoney[5];
+                change = change % AllowedMoney[5];
+                for (i = 1; i <= c; i++) Console.WriteLine("100 bil" + " ");
+
+            }
+            while (change >= AllowedMoney[4])
+            {
+                d = change / AllowedMoney[4];
+                change = change % AllowedMoney[4];
+                for (i = 1; i <= d; i++) Console.WriteLine("50 bil" + " ");
+
+            }
+            while (change >= AllowedMoney[3])
+            {
+                e = change / AllowedMoney[3];
+                change = change % AllowedMoney[3];
+                for (i = 1; i <= e; i++) Console.WriteLine("20 bil" + " ");
+
+            }
+            while (change >= AllowedMoney[2])
+            {
+                f = change / AllowedMoney[2];
+                change = change % AllowedMoney[2];
+                for (i = 1; i <= f; i++) Console.WriteLine("10 coins" + " ");
+
+            }
+            while (change >= AllowedMoney[1])
+            {
+                g = change / AllowedMoney[1];
+                change = change % AllowedMoney[1];
+                for (i = 1; i <= g; i++) Console.WriteLine("5 coins" + " ");
+
+            }
+            while (change >= AllowedMoney[0])
+            {
+                f = change / AllowedMoney[0];
+                change = change % AllowedMoney[0];
+                for (i = 1; i <= f; i++) Console.WriteLine("1 coin" + " ");
+
+            }
+
+           Console.WriteLine("Press any key to Exit");
             Console.ReadKey();
-            Environment.Exit(0);
+           Environment.Exit(0);
 
         }
 
 
         public void EndTransaction()
         {
-           
+
 
 
             Environment.Exit(0);
-           
+
 
         }
 

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineProject", "VendingMachine2\VendingMachineProject.csproj", "{C4DF4CC0-3A81-4B30-AFCB-CCE2583B0B8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineTest", "VendingMachineTest\VendingMachineTest.csproj", "{D7C1994A-0049-4D57-980B-EC3FD22E31C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachine.Tests", "VendingMachineTest\VendingMachine.Tests.csproj", "{D7C1994A-0049-4D57-980B-EC3FD22E31C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
