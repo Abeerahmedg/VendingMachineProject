@@ -10,7 +10,7 @@
         }
         
 
-        private readonly int[] AllowedMoney = { 1, 5, 10, 20, 50, 100, 500 };
+        public readonly int[] AllowedMoney = { 1, 5, 10, 20, 50, 100, 500 };
         public List<Product> Products;
         public List<Product> Basket = new();
         public int AvilableMoney { get; set; }
@@ -55,9 +55,9 @@
             }
         }
 
-        public void Purchase()
+        public void Purchase(int ProductId)
         {
-            Console.Clear();
+            
             if (AvilableMoney == 0)
             {
                 Console.WriteLine("Please insert money first!");
@@ -66,16 +66,16 @@
             else
             {
                 Console.WriteLine("Please Enter the Id for the product you want to buy: ");
-                int ProductId = Convert.ToInt32(Console.ReadLine());
+                ProductId = Convert.ToInt32(Console.ReadLine());
                 if (ProductId > Products.Count)
                 {
                     Console.WriteLine("Not a valid Id");
                 }
                 foreach (var item in Products)
                 {
-                    if ((ProductId == item.ProductId))
+                    if (ProductId == item.ProductId)
                     {
-                        if ((AvilableMoney > item.Price))
+                        if (AvilableMoney > item.Price)
                         {
                             Basket.Add(item);
                             AvilableMoney -= item.Price;
@@ -93,10 +93,11 @@
             }
         }
 
-        public void InsertMoney(int avilable)
+        public void InsertMoney(bool valid)
         {
-            Console.Clear();
-            bool valid = false;
+           
+            int avilable = 0;
+            
             Console.WriteLine("Insert Money to purchase..");
              avilable = int.Parse(Console.ReadLine());
 
@@ -125,10 +126,18 @@
             }
 
         }
+        public bool CheckInput(int args)
+        {
+            foreach( int index in AllowedMoney)
+            {
+                if (args == index) { return true; }
+            }
+            return false;
+        }
 
         public void ShowBasket()
         {
-            Console.Clear();
+         
 
             if (Basket.Count == 0)
             {
@@ -161,7 +170,6 @@
 
         public void ReturnChange()
         {
-            Console.Clear();
             Console.WriteLine($"Thank you for purchasing here are your change : {AvilableMoney}");
             Console.WriteLine();
             Console.WriteLine("Press any key to Exit");
@@ -173,37 +181,11 @@
 
         public void EndTransaction()
         {
-            Console.Clear();
+           
 
 
             Environment.Exit(0);
-            // int change1 = AvilableMoney;
-            // AvilableMoney = 0;
-            //int change = new();
-            // if (change1 == 0)
-            // {
-            //     Console.WriteLine("Thank you for purchasing!");
-            // }
-            // //for (int i = AllowedMoney.Length - 1; i >= 0; i--)
-            // //{
-            // //    if (change1 > 0)
-            // //    {
-            // //        int count = change1 / AllowedMoney[i];
-
-            // //        if (count > 0)
-            // //        {
-            // //            change[AllowedMoney[i]] = count;
-            // //            change1 %= AllowedMoney[i];
-            // //        }
-            // //    }
-            // //}
-            // else if (change1 > 0)
-            // {
-            //     foreach(var item in Basket)
-            //     {
-            //         change = item.Price - AvilableMoney; 
-            //     }
-
+           
 
         }
 

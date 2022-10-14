@@ -1,6 +1,8 @@
-﻿namespace VendingMachine2
+﻿using System;
+
+namespace VendingMachine2
 {
-    internal class ApplicationManager
+    public class ApplicationManager
     {
 
 
@@ -26,15 +28,21 @@
             switch (Console.ReadLine())
             {
                 case "1":
-
-                    vendingMachine.InsertMoney();
+                    Console.Clear();
+                    bool valid = false;
+                    vendingMachine.InsertMoney(valid);
                     break;
 
                 case "2":
+                    Console.Clear();
                     vendingMachine.ShowAll();
                     break;
                 case "3":
-                    vendingMachine.Purchase();
+                    Console.Clear();
+                    Console.WriteLine("Press 1 then Enter to insert the wanted Product Id:");
+
+                    var ProductId = Convert.ToInt32(Console.ReadLine());
+                    vendingMachine.Purchase(ProductId);
                     //if (vendingMachine.AvilableMoney != 0)
                     //{
 
@@ -52,14 +60,17 @@
                     //else Console.WriteLine("Please insert money");
                     break;
                 case "4":
+                    Console.Clear();
                     vendingMachine.ShowBasket();
                     break;
                 case "5":
+                    Console.Clear();
                     vendingMachine.ReturnChange();
                     Console.WriteLine();
                     //Environment.Exit(0);
                     break;
                 case "6":
+                    Console.Clear();
                     vendingMachine.EndTransaction();
                     break;
                 default:

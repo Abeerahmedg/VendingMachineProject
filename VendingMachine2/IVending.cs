@@ -1,10 +1,10 @@
 ﻿namespace VendingMachine2
 {
-    internal interface IVending
+    public interface IVending
     {
-        void Purchase();
+        void Purchase(int ProductId);
         void ShowAll();
-        void InsertMoney(int v);
+        void InsertMoney(bool valid);
         void EndTransaction();
 
     }

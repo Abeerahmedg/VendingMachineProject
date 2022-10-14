@@ -1,6 +1,6 @@
 ﻿namespace VendingMachine2
 {
-    internal class HealthySnacks : Product
+    public class HealthySnacks : Product
     {
         public HealthySnacks(string name, int price, string description) : base(name, price, description)
         {
